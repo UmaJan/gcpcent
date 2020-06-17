@@ -1,0 +1,79 @@
+f= open('open.txt','r')
+#f=len(open(open.txt).readlines())
+c=0
+lst= []
+count = 0
+r=[]
+text = f.read()
+labels = []
+tlist=[]
+l=len(text)
+pcentgc=[]
+maxgc = 0
+for i in range(0,l):
+  if(text[i]=='>'):
+    lst.append(i)
+le=len(lst)
+
+#print(lst)
+#print(le)
+for i in range(0,le,1):
+  labels.append(text[(lst[i]):(lst[i]+14)])
+print(labels)
+
+#print(le)
+#print(lst)
+txtle=[]
+for i in range(0,le-1):
+  tlist.append(text[(lst[i]+15):((lst[(i+1)]-1))])
+  #tlist[i].strip()
+tlist.append(text[(lst[le-1]+14):(l)])
+#print(tlist)
+
+#print(tlist)
+tle=len(tlist)
+#print(tle)
+#print(tlist)
+for i in range(0,tle):
+  txt = tlist[i]
+  #print(txt)
+  #txt=txt.rstrip()
+  nlines = len(txt.splitlines())-1
+  r.append(nlines)
+  lens=len(txt)
+  txtle.append(lens)
+  #print(lens)
+
+  for i in range(0,(lens)):
+    if((txt)[i]=="G" or (txt)[i]=="C"):
+       c=c+1
+  pcentgc.append(c)
+#print(pcentgc)
+for i in range(0,len(txtle)):
+  txtle[i]=txtle[i]-r[i]
+print(txtle)
+for i in range(len(pcentgc)-1,0,-1):
+    pcentgc[i]=pcentgc[i]-(pcentgc[i-1])
+    pcentgc[i]=pcentgc[i]/txtle[i]
+pcentgc[0]=pcentgc[0]/txtle[0]
+print(pcentgc)  
+
+#for i in range(0,):
+  #tlist[i].readlines[i]
+#for i in range(1,len(pcentgc)):
+  #pcentgc[i]=pcentgc[i]-pcentgc[i-1]
+
+mgc = pcentgc[0]
+
+#print(pcentgc)
+for i in range(1,len(pcentgc)):
+  if(pcentgc[i]>mgc):
+    mgc=(pcentgc[i])
+    
+  else:
+    mgc=mgc
+
+
+print(mgc*100)
+print(labels[pcentgc.index(mgc)])
+f.close()
